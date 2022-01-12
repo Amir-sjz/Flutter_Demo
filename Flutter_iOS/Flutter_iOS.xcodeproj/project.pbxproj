@@ -161,9 +161,11 @@
 			buildConfigurationList = 26C0D709278EBB8900BF5665 /* Build configuration list for PBXNativeTarget "Flutter_iOS" */;
 			buildPhases = (
 				FC36EE7A34E40A9310692013 /* [CP] Check Pods Manifest.lock */,
+				D24BB46541A8144F0D567A5A /* [CP-User] Run Flutter Build my_flutter Script */,
 				26C0D6DB278EBB8600BF5665 /* Sources */,
 				26C0D6DC278EBB8600BF5665 /* Frameworks */,
 				26C0D6DD278EBB8600BF5665 /* Resources */,
+				77895651C5DBD5B1EBF5F3FC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -280,6 +282,33 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		77895651C5DBD5B1EBF5F3FC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Flutter_iOS/Pods-Flutter_iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Flutter_iOS/Pods-Flutter_iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Flutter_iOS/Pods-Flutter_iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D24BB46541A8144F0D567A5A /* [CP-User] Run Flutter Build my_flutter Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "[CP-User] Run Flutter Build my_flutter Script";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nset -u\nsource \"${SRCROOT}/my_flutter/.ios/Flutter/flutter_export_environment.sh\"\nexport VERBOSE_SCRIPT_LOGGING=1 && \"$FLUTTER_ROOT\"/packages/flutter_tools/bin/xcode_backend.sh build";
+		};
 		FC36EE7A34E40A9310692013 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
