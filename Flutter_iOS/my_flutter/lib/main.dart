@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:my_flutter/test_demo.dart';
 
 class MyAppBar extends StatelessWidget {
   const MyAppBar({required this.title, Key? key}) : super(key: key);
@@ -63,10 +64,12 @@ class Myscaffold extends StatelessWidget {
 }
 
 void main() {
-  runApp(new MaterialApp(
-    title: 'My app',
-    home: new Myscaffold(),
-  ));
+  runApp(const TestApp());
+
+  // runApp(new MaterialApp(
+  //   title: 'My app',
+  //   home: new Myscaffold(),
+  // ));
 
   // runApp(const MyApp());
 }
