@@ -19,8 +19,6 @@ class _ChangeLocationState extends State<ChangeLocation> {
     Future.delayed(Duration(seconds: 2), () {
       print('Data is got in 2 seconds.');
     });
-
-    print('Go through');
   }
 
   int counter = 0;
