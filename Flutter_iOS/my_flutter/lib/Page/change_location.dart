@@ -8,6 +8,19 @@ class ChangeLocation extends StatefulWidget {
 }
 
 class _ChangeLocationState extends State<ChangeLocation> {
+  void getData() async {
+    String username = await Future.delayed(Duration(seconds: 3), () {
+      print('Data is got in 3 seconds.');
+      return "Li Ming";
+    });
+
+    print('username = $username.');
+
+    Future.delayed(Duration(seconds: 2), () {
+      print('Data is got in 2 seconds.');
+    });
+  }
+
   int counter = 0;
   @override
   Widget build(BuildContext context) {
@@ -42,5 +55,7 @@ class _ChangeLocationState extends State<ChangeLocation> {
     // TODO: implement initState
     print('initStateCall');
     super.initState();
+
+    getData();
   }
 }
