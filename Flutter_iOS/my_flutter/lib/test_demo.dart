@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:my_flutter/xzc_list_demo.dart';
+import 'model/Quote.dart';
+import 'widget/QuoteCard.dart';
 
 class TestApp extends StatelessWidget {
   const TestApp({Key? key}) : super(key: key);
@@ -18,14 +20,112 @@ class TestApp extends StatelessWidget {
         ),
       ),
       // home 设置当前APP的根视图
-      home: const DingCard(),
+      home: const TestQuote(),
     );
   }
 }
 
-class DingCard extends StatelessWidget {
-  const DingCard({Key? key}) : super(key: key);
+class TestQuote extends StatefulWidget {
+  const TestQuote({Key? key}) : super(key: key);
 
+  @override
+  _TestQuoteState createState() => _TestQuoteState();
+}
+
+class _TestQuoteState extends State<TestQuote> {
+  List<Quote> quotes = [
+    Quote(text: 'quote1', author: 'author1'),
+    Quote(text: 'quote2', author: 'author2'),
+    Quote(text: 'quote3', author: 'author3'),
+    Quote(text: 'quote4', author: 'author4'),
+    Quote(text: 'quote5', author: 'author5'),
+    Quote(text: 'quote6', author: 'author6'),
+    Quote(text: 'quote7', author: 'author7'),
+    Quote(text: 'quote8', author: 'author8'),
+  ];
+  // List<String> quotes = [
+  //   'quote1',
+  //   'quote2',
+  //   'quote3',
+  //   'quote4',
+  //   'quote5',
+  //   'quote6',
+  //   'quote7',
+  // ];
+
+  Widget quoteTemplate(Quote quote) {
+    return Card(
+      margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(
+              quote.text,
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.grey[600],
+              ),
+            ),
+            const SizedBox(
+              height: 6.0,
+            ),
+            const Divider(
+              height: 3,
+              thickness: 0.5,
+              color: Colors.brown,
+            ),
+            Text(
+              quote.author,
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey[900],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[100],
+      appBar: AppBar(
+        title: const Text('Awesome Quotes'),
+      ),
+      body: SafeArea(
+        // 防止被遮挡
+        child: ListView(
+          children: quotes
+              .map((e) => QuoteCard(
+                    quote: e,
+                    delete: () {
+                      setState(() {
+                        quotes.remove(e);
+                        print(quotes); // 数据源以及UI都会变化
+                      });
+                    },
+                  ))
+              .toList(),
+        ),
+      ),
+    );
+  }
+}
+
+// 卡片demo
+class TestCard extends StatefulWidget {
+  const TestCard({Key? key}) : super(key: key);
+
+  @override
+  _TestCardState createState() => _TestCardState();
+}
+
+class _TestCardState extends State<TestCard> {
+  int level = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +135,16 @@ class DingCard extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.grey[850],
         elevation: 0.0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // 更改状态必须调用setState(),会触发build函数
+          setState(() {
+            level += 1;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.greenAccent,
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30, 40, 30, 0),
@@ -72,16 +182,16 @@ class DingCard extends StatelessWidget {
               height: 30,
             ),
             const Text(
-              'Favorite',
+              'Level',
               style: TextStyle(color: Colors.grey, letterSpacing: 2),
             ),
             // 间隔
             const SizedBox(
               height: 10,
             ),
-            const Text(
-              'Food',
-              style: TextStyle(
+            Text(
+              '$level',
+              style: const TextStyle(
                 color: Colors.white,
                 letterSpacing: 2,
                 fontSize: 18,
@@ -111,6 +221,95 @@ class DingCard extends StatelessWidget {
     );
   }
 }
+
+// class DingCard extends StatelessWidget {
+//   const DingCard({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.grey[900],
+//       appBar: AppBar(
+//         title: Text('Card'),
+//         centerTitle: true,
+//         backgroundColor: Colors.grey[850],
+//         elevation: 0.0,
+//       ),
+//       body: Padding(
+//         padding: EdgeInsets.fromLTRB(30, 40, 30, 0),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: <Widget>[
+//             const Center(
+//               child: CircleAvatar(
+//                 backgroundColor: Colors.red,
+//                 radius: 40,
+//               ),
+//             ),
+//             const Divider(
+//               height: 60,
+//               color: Colors.green,
+//             ),
+//             const Text(
+//               'Name',
+//               style: TextStyle(color: Colors.grey, letterSpacing: 2),
+//             ),
+//             // 间隔
+//             const SizedBox(
+//               height: 10,
+//             ),
+//             const Text(
+//               'Li Ming',
+//               style: TextStyle(
+//                 color: Colors.white,
+//                 letterSpacing: 2,
+//                 fontSize: 18,
+//                 fontWeight: FontWeight.bold,
+//               ),
+//             ),
+//             const SizedBox(
+//               height: 30,
+//             ),
+//             const Text(
+//               'Favorite',
+//               style: TextStyle(color: Colors.grey, letterSpacing: 2),
+//             ),
+//             // 间隔
+//             const SizedBox(
+//               height: 10,
+//             ),
+//             const Text(
+//               'Food',
+//               style: TextStyle(
+//                 color: Colors.white,
+//                 letterSpacing: 2,
+//                 fontSize: 18,
+//                 fontWeight: FontWeight.bold,
+//               ),
+//             ),
+//             const SizedBox(
+//               height: 30,
+//             ),
+//             Row(
+//               children: const <Widget>[
+//                 Icon(
+//                   Icons.email,
+//                   color: Colors.green,
+//                 ),
+//                 SizedBox(width: 10),
+//                 Text(
+//                   'liming@email.com',
+//                   style: TextStyle(
+//                       color: Colors.grey, fontSize: 18, letterSpacing: 1),
+//                 ),
+//               ],
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 // 使用的是可变Widget, 会自动创建一个State，方便更改内容
 class TestDemoPage extends StatefulWidget {

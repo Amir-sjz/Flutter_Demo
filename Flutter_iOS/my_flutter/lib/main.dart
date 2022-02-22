@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:my_flutter/test_demo.dart';
+import 'package:my_flutter/Page/home.dart';
 
 class MyAppBar extends StatelessWidget {
   const MyAppBar({required this.title, Key? key}) : super(key: key);
@@ -14,25 +15,25 @@ class MyAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return new Container(
+    return Container(
       height: 56.0, // 单位是逻辑上的像素（并非真实的像素，类似于浏览器中的像素）
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       decoration: new BoxDecoration(color: Colors.blue[500]),
       // Row 是水平方向的线性布局（linear layout）
-      child: new Row(
+      child: Row(
         //列表项的类型是 <Widget>
         children: <Widget>[
-          new IconButton(
-            icon: new Icon(Icons.menu),
+          const IconButton(
+            icon: Icon(Icons.menu),
             tooltip: 'Navigation menu',
             onPressed: null, // null 会禁用 button
           ),
           // Expanded expands its child to fill the available space.
-          new Expanded(
+          Expanded(
             child: title,
           ),
-          new IconButton(
-            icon: new Icon(Icons.search),
+          const IconButton(
+            icon: Icon(Icons.search),
             tooltip: 'Search',
             onPressed: null,
           ),
@@ -44,18 +45,18 @@ class MyAppBar extends StatelessWidget {
 
 class Myscaffold extends StatelessWidget {
   Widget build(BuildContext context) {
-    return new Material(
-      child: new Column(
+    return Material(
+      child: Column(
         children: <Widget>[
-          new MyAppBar(
-            title: new Text(
+          MyAppBar(
+            title: Text(
               'Example title',
               style: Theme.of(context).primaryTextTheme.headline6,
             ),
           ),
-          new Expanded(
-              child: new Center(
-            child: new Text('Hello, world!'),
+          const Expanded(
+              child: Center(
+            child: Text('Hello, world!'),
           )),
         ],
       ),
@@ -64,7 +65,8 @@ class Myscaffold extends StatelessWidget {
 }
 
 void main() {
-  runApp(const TestApp());
+  runApp(const HomeApp());
+  // runApp(const TestApp());
 
   // runApp(new MaterialApp(
   //   title: 'My app',
