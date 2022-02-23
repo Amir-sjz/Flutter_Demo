@@ -46,7 +46,18 @@ class _HomeState extends State<Home> {
               child: Row(
                 children: const <Widget>[
                   Icon(Icons.edit_location),
-                  Text('Edit Location'),
+                  Text(
+                    'Edit Location',
+                    style: TextStyle(
+                      fontSize: 16,
+                      shadows: <Shadow>[
+                        Shadow(
+                            offset: Offset(2.0, 2.0),
+                            blurRadius: 3.0,
+                            color: Colors.black),
+                      ],
+                    ),
+                  ),
                 ],
               )),
         ),
