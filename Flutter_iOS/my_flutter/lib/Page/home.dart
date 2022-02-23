@@ -9,7 +9,7 @@ class HomeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       // home: Home(),
-      initialRoute: '/home', // 设置初始路径
+      initialRoute: '/', // 设置初始路径
       routes: {
         '/': ((context) => Loading()),
         '/home': ((context) => Home()),
@@ -27,20 +27,29 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Map data = {};
   @override
   Widget build(BuildContext context) {
+    // data = ModalRoute.of(context)?.settings.arguments as Map;
+    // print(data);
+
     return Scaffold(
       body: SafeArea(
-        child: TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/location');
-            },
-            child: Row(
-              children: const <Widget>[
-                Icon(Icons.edit_location),
-                Text('Edit Location'),
-              ],
-            )),
+        child: Container(
+          decoration: BoxDecoration(
+              // image: Image(Ic);
+              ),
+          child: TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/location');
+              },
+              child: Row(
+                children: const <Widget>[
+                  Icon(Icons.edit_location),
+                  Text('Edit Location'),
+                ],
+              )),
+        ),
       ),
     );
   }
